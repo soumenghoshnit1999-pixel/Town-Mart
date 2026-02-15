@@ -81,16 +81,17 @@ body {
 
 .hero-overlay {
     background: transparent;
-    color: #FFD700;         /* Gold text */
+    color: #ffffff;             /* Changed to White */
     text-align: center;
     padding: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9); /* Stronger shadow */
 }
 
 .hero-overlay h1 {
     font-size: 40px;
     margin-bottom: 15px;
-    color: #FFD700;         /* Gold text */
+    color: #ffffff;             /* Changed to White */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9); /* Stronger shadow */
 }
 
 .shop-btn {
