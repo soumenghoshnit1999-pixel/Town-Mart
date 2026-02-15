@@ -1,162 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Town Mart | Chandrakona</title>
+  <title>Trust Mart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:linear-gradient(to bottom,#e3f2fd,#ffffff);
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+    }
 
-header{
-background:#1565C0;
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+    header {
+      background: #1f4e8c;
+      color: white;
+      padding: 15px 40px;
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-.logo{
-font-size:22px;
-font-weight:bold;
-}
+    .hero {
+      background: url('https://images.unsplash.com/photo-1606813907291-d86efa9b94db') center/cover no-repeat;
+      text-align: center;
+      padding: 100px 20px;
+      color: white;
+    }
 
-.badge{
-background:#4CAF50;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-}
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
 
-.hero{
-text-align:center;
-padding:40px 20px;
-}
+    .hero p {
+      font-size: 18px;
+    }
 
-.hero h1{
-color:#1565C0;
-}
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
 
-.button{
-background:#4CAF50;
-color:white;
-padding:12px 20px;
-border:none;
-border-radius:25px;
-cursor:pointer;
-font-size:16px;
-}
+    .btn:hover {
+      background: #218838;
+      transform: scale(1.05);
+    }
 
-.categories{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-padding:20px;
-}
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 60px 40px;
+    }
 
-.card{
-background:white;
-width:220px;
-border-radius:20px;
-padding:20px;
-text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
-transition:0.3s;
-}
+    .card {
+      background: white;
+      border-radius: 15px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
 
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 15px 25px rgba(0,0,0,0.2);
-}
+    .card:hover {
+      transform: translateY(-8px);
+    }
 
-.card h3{
-color:#1565C0;
-}
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      height: 180px;
+      object-fit: cover;
+    }
 
-footer{
-background:#1565C0;
-color:white;
-text-align:center;
-padding:15px;
-margin-top:30px;
-}
-</style>
+    footer {
+      background: #1f4e8c;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">Town Mart</div>
-<div class="badge">Free Delivery Over ₹199</div>
+  Trust Mart
 </header>
 
 <section class="hero">
-<h1>Welcome to Town Mart Chandrakona</h1>
-<p>Fresh Groceries & Dairy Delivered to Your Door</p>
-<button class="button" onclick="orderNow()">Order on WhatsApp</button>
+  <h1>Fresh Groceries Delivered to Your Door</h1>
+  <p>'s Trusted Local Store</p>
+  <a href="#" class="btn">Order on WhatsApp</a>
 </section>
 
-<section class="categories">
+<section class="products">
 
-<div class="card">
-<h3>Fresh Milk & Dairy</h3>
-<p>Milk, Curd, Paneer, Ghee</p>
-<button class="button" onclick="addToCart('Fresh Milk & Dairy')">Add to Cart</button>
-</div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+    <h3>Fresh Milk & Dairy</h3>
+    <p>Milk, Curd, Paneer, Ghee</p>
+    <a href="#" class="btn">Add to Cart</a>
+  </div>
 
-<div class="card">
-<h3>Groceries</h3>
-<p>Rice, Dal, Oil, Atta</p>
-<button class="button" onclick="addToCart('Groceries')">Add to Cart</button>
-</div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1604908177522-402b4b6f6e9b">
+    <h3>Groceries</h3>
+    <p>Rice, Dal, Oil, Atta</p>
+    <a href="#" class="btn">Add to Cart</a>
+  </div>
 
-<div class="card">
-<h3>Snacks & Beverages</h3>
-<p>Chips, Biscuits, Soft Drinks</p>
-<button class="button" onclick="addToCart('Snacks & Beverages')">Add to Cart</button>
-</div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1585238342028-4f7f89e1d8e4">
+    <h3>Snacks & Beverages</h3>
+    <p>Chips, Biscuits, Soft Drinks</p>
+    <a href="#" class="btn">Add to Cart</a>
+  </div>
 
-<div class="card">
-<h3>Household Essentials</h3>
-<p>Soap, Detergent, Cleaning Items</p>
-<button class="button" onclick="addToCart('Household Essentials')">Add to Cart</button>
-</div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+    <h3>Household Essentials</h3>
+    <p>Soap, Detergent, Cleaning Items</p>
+    <a href="#" class="btn">Add to Cart</a>
+  </div>
 
 </section>
 
 <footer>
-© 2024 Town Mart | Chandrakona
+  © 2024 Trust Mart
 </footer>
-
-<script>
-let cart=[];
-
-function addToCart(item){
-cart.push(item);
-alert(item + " added to cart");
-}
-
-function orderNow(){
-if(cart.length===0){
-alert("Cart is empty!");
-return;
-}
-
-let message="Hello Town Mart,%0AI want to order:%0A";
-cart.forEach((item,i)=>{
-message+=(i+1)+". "+item+"%0A";
-});
-message+="%0AAddress: ";
-
-window.open("https://wa.me/918945034994?text="+message,"_blank");
-}
-</script>
 
 </body>
 </html>
