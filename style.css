@@ -37,7 +37,7 @@
 .hero {
     height: 450px;
     /* Hero Image ekhane thakbe */
-    background: url('images/gd.png') no-repeat center center/cover;
+    background: url('images/gd.jpg') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: center;
