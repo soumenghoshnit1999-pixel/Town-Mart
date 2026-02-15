@@ -36,7 +36,7 @@
 /* Hero Section with Grocery Background */
 .hero {
     height: 450px;
-    /* Hero Image ekhane thakbe */
+    /* BACKGROUND IMAGE EKHANE THAKBE, BAKI SHOB COLOR REMOVE KORUN */
     background: url('images/3c2c34c2-c0e2-45f7-8563-deeddc8f374f.png') no-repeat center center/cover;
     position: relative;
     display: flex;
@@ -70,26 +70,22 @@
 }
 
 .shop-btn {
-    background: #FFD700;
+    background: #FFD700; /* Gold Button */
     border: none;
     padding: 12px 25px;
-    color: #333;
+    color: #333;          /* Dark text for button */
     font-size: 16px;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    /* Transition adds smoothness to the hover effect */
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Animation add kora holo */
 }
 
 .shop-btn:hover {
-    background: #ffffff; /* Button color turns white */
+    background: #ffffff; /* Button color turns white on hover */
     color: #FFD700;       /* Text color turns gold */
-    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5); /* Adds a gold glow */
-    transform: translateY(-2px); /* Lifts the button up slightly */background: #ffffff; /* Button color turns white */
-    color: #FFD700;       /* Text color turns gold */
-    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5); /* Adds a gold glow */
-    transform: translateY(-2px); /* Lifts the button up slightly */
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5); /* Gold glow */
+    transform: translateY(-2px); /* Lifts up slightly */
 }
 
 /* Products Section */
