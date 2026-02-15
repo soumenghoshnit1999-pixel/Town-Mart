@@ -86,10 +86,11 @@ body {
 
 .hero-overlay {
     background: transparent; /* Slight overlay */
-    color: #ffffff;
+    color: #FFD700;         /* Gold text */
     text-align: center;
     padding: 30px;
     border-radius: 10px;
+    border: 1px solid #FFD700; /* Gold border */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);               
 }
 
