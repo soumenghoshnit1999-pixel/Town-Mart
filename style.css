@@ -35,12 +35,12 @@
 
 /* Hero Section with Grocery Background */
 .hero {
-    height: 450px;
-    background: url('images/3c2c34c2-c0e2-45f7-8563-deeddc8f374f.png') no-repeat center center/cover;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(0, 0, 0, 0.4); /* Ektu beshi transparent black */
+    color: #FFD700; /* Gold color */
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid #FFD700; /* Gold border add korte paren */
 }
 
 .hero-overlay {
