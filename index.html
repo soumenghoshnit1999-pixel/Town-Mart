@@ -24,21 +24,15 @@
     <section class="hero">
         <div class="slider">
             <div class="slides">
-                <div class="slide active" style="background-image: url('images/banner2.png');">
+                <div class="slide active" style="background-image: url('images/banner1.jpg');">
                     <div class="hero-overlay">
                         <h1>Big Savings on Grocery</h1>
                         <button class="shop-btn">Shop Now</button>
                     </div>
                 </div>
-                <div class="slide" style="background-image: url('images/banner1.png');">
+                <div class="slide" style="background-image: url('images/banner2.jpg');">
                     <div class="hero-overlay">
                         <h1>Fresh Dairy Products</h1>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
-                </div>
-                <div class="slide" style="background-image: url('images/banner3.png');">
-                    <div class="hero-overlay">
-                        <h1>Best Prices Guaranteed</h1>
                         <button class="shop-btn">Shop Now</button>
                     </div>
                 </div>
@@ -47,7 +41,6 @@
             <div class="dots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
-                <span class="dot"></span>
             </div>
         </div>
     </section>
@@ -55,19 +48,19 @@
     <section class="products">
         <div class="card">
             <img src="images/amul.jfif" alt="Milk">
-            <h3>Milk</h3>
+            <h3>Amul Milk</h3>
             <p class="price">₹28</p>
             <button>Add to Cart</button>
         </div>
         <div class="card">
             <img src="images/oil.jfif" alt="Oil">
-            <h3>Oil</h3>
+            <h3>Fortune Oil</h3>
             <p class="price">₹120</p>
             <button>Add to Cart</button>
         </div>
         <div class="card">
             <img src="images/biscuit.jpg" alt="biscuit">
-            <h3>Biscuits</h3>
+            <h3>Parle-G Biscuits</h3>
             <p class="price">₹10</p>
             <button>Add to Cart</button>
         </div>
@@ -104,15 +97,11 @@
             showSlide(currentSlide + 1);
         }
 
-        // Automatic slide change every 4 seconds
-        setInterval(nextSlide, 4000);
+        setInterval(nextSlide, 4000); // Auto change
 
-        // Dot click functionality
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => showSlide(index));
         });
     </script>
 </body>
 </html>
-
-
