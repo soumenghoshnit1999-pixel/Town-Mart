@@ -85,12 +85,12 @@ body {
 }
 
 .hero-overlay {
-    background: transparent; /* Aita transparent korun */
+    background: transparent; /* Slight overlay */
     color: #ffffff;
     text-align: center;
     padding: 30px;
     border-radius: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);                
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);               
 }
 
 }
