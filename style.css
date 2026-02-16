@@ -72,8 +72,10 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    /* আপনার HTML এ দেওয়া ছবিগুলো যেন পুরোপুরি দেখা যায় তার জন্য */
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 1s ease-in-out;
     display: flex;
@@ -116,6 +118,7 @@ body {
     bottom: 15px;
     width: 100%;
     text-align: center;
+    z-index: 10;
 }
 
 .dot {
@@ -191,7 +194,8 @@ body {
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
-    display: none; /* Initially hidden */
+    /* initial state is handled by JS, but good to have display: none here */
+    display: none;
 }
 
 .card {
