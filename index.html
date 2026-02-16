@@ -1,163 +1,144 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indian Grocery Store</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Town Mart - Grocery Store</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <div class="navbar">
-        <div class="logo">GroceryStore</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search for products...">
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+    <div class="logo">Town<span>Mart</span></div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for products...">
+    </div>
+
+    <div class="nav-links">
+        <a href="#">Login</a>
+        <a href="#">Cart 🛒 <span id="cartCount">0</span></a>
+    </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Big Grocery Sale</h1>
+        <p>Up to 40% Off on Daily Essentials</p>
+        <button onclick="scrollToCategory()">Shop Now</button>
+    </div>
+</section>
+
+<!-- ================= CATEGORY ================= -->
+<section class="container" id="categorySection">
+
+    <h2>Shop by Category</h2>
+
+    <div class="category-grid">
+        <div class="category-card" onclick="showProducts('rice')">
+            <img src="images/india-gate.png">
+            <h3>Rice</h3>
         </div>
-        <div class="nav-links">
-            <a href="#">Login</a>
-            <a href="#">Cart</a>
+
+        <div class="category-card" onclick="showProducts('oil')">
+            <img src="images/fortune-pouch.png">
+            <h3>Oil</h3>
+        </div>
+
+        <div class="category-card" onclick="showProducts('spices')">
+            <img src="images/spices.png">
+            <h3>Spices</h3>
+        </div>
+
+        <div class="category-card" onclick="showProducts('dairy')">
+            <img src="images/amul-milk.png">
+            <h3>Dairy</h3>
         </div>
     </div>
 
-    <div class="hero">
-        <div class="slider">
-            <div class="slide active" style="background-image: url('images/banner2.png');">
-                <div class="hero-overlay">
-                    <h1>Big Savings on Grocery</h1>
-                    <button class="shop-btn">Shop Now</button>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/banner1.png');">
-                <div class="hero-overlay">
-                    <h1>Fresh Dairy Products</h1>
-                    <button class="shop-btn">Shop Now</button>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/banner3.png');">
-                <div class="hero-overlay">
-                    <h1>Best Prices Guaranteed</h1>
-                    <button class="shop-btn">Shop Now</button>
-                </div>
-            </div>
-        </div>
-        <div class="dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="container" id="productSection" style="display:none;">
+    <div class="product-header">
+        <button onclick="showCategories()">← Back</button>
+        <h2 id="categoryTitle"></h2>
     </div>
 
-    <div class="container">
-        
-        <div id="categoryView">
-            <h2>Shop by Category</h2>
-            <div class="category-grid">
-                <div class="category-card" onclick="showProducts('rice')">
-                    <img src="images/india-gate.png" alt="Rice">
-                    <h3>Rice</h3>
-                </div>
-                <div class="category-card" onclick="showProducts('oil')">
-                    <img src="images/fortune-pouch.png" alt="Oil">
-                    <h3>Oil</h3>
-                </div>
-                <div class="category-card" onclick="showProducts('spices')">
-                    <img src="images/spices.png" alt="Spices">
-                    <h3>Spices</h3>
-                </div>
-                <div class="category-card" onclick="showProducts('dairy')">
-                    <img src="images/amul-milk.png" alt="Dairy">
-                    <h3>Dairy</h3>
-                </div>
-            </div>
-        </div>
+    <div class="product-grid" id="productGrid"></div>
+</section>
 
-        <div id="productView" style="display:none;">
-            <div class="product-header">
-                <button class="back-btn" onclick="showCategories()">Back</button>
-                <h2 id="categoryTitle">Products</h2>
-            </div>
-            <div class="product-grid" id="productGrid">
-                </div>
-        </div>
-
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="footer-content">
+        <p>Secure Payments | Easy Returns | Fast Delivery</p>
+        <p>© 2026 Town Mart | Designed by Soumen</p>
     </div>
+</footer>
 
-    <footer>
-        <p>&copy; 2026 Indian Grocery Store</p>
-    </footer>
+<script>
 
-    <script>
-        // --- স্লাইড শো স্ক্রিপ্ট ---
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
+let cart = 0;
 
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
+const productsData = {
+    rice: [
+        { name: "Basmati Rice 1kg", price: 150, oldPrice: 200, img: "images/basmati.jfif" },
+        { name: "Miniket Rice 5kg", price: 300, oldPrice: 380, img: "images/miniket.jfif" }
+    ],
+    oil: [
+        { name: "Soyabean Oil 1L", price: 120, oldPrice: 150, img: "images/oil.jpg" }
+    ],
+    spices: [
+        { name: "Turmeric Powder 100g", price: 30, oldPrice: 40, img: "images/turmeric.jfif" }
+    ],
+    dairy: [
+        { name: "Amul Milk 1L", price: 60, oldPrice: 70, img: "images/amul.jfif" }
+    ]
+};
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
+function showProducts(category) {
+    document.getElementById('categorySection').style.display = 'none';
+    document.getElementById('productSection').style.display = 'block';
+    document.getElementById('categoryTitle').innerText = category.toUpperCase();
 
-        // ৫ সেকেন্ড পরপর স্লাইড পরিবর্তন হবে
-        setInterval(nextSlide, 5000); 
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = '';
 
-        // --- ক্যাটাগরি এবং প্রোডাক্ট ডাটা ---
-        const productsData = {
-            rice: [
-                { name: "Basmati Rice 1kg", price: "₹150", img: "images/basmati.jfif" },
-                { name: "Miniket Rice 5kg", price: "₹300", img: "images/miniket.jfif" },
-                { name: "Brown Rice 1kg", price: "₹120", img: "images/brown-rice.jfif" }
-            ],
-            oil: [
-                { name: "Fortune Soyabean 1L", price: "₹120", img: "images/oil.jpg" },
-                { name: "Mustard Oil 1L", price: "₹140", img: "images/mustard-oil.jfif" }
-            ],
-            spices: [
-                { name: "Turmeric Powder 100g", price: "₹30", img: "images/turmeric.jfif" },
-                { name: "Chilli Powder 100g", price: "₹35", img: "images/chilli.jfif" }
-            ],
-            dairy: [
-                { name: "Amul Milk 1L", price: "₹60", img: "images/amul.jfif" },
-                { name: "Amul Butter 100g", price: "₹50", img: "images/butter.jfif" }
-            ]
-        };
+    productsData[category].forEach(product => {
+        let discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
 
-        // ক্যাটাগরি থেকে প্রোডাক্ট দেখানোর ফাংশন
-        function showProducts(category) {
-            document.getElementById('categoryView').style.display = 'none';
-            document.getElementById('productView').style.display = 'block';
-            document.getElementById('categoryTitle').innerText = category.charAt(0).toUpperCase() + category.slice(1);
-            
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
-            grid.style.display = 'flex';
-            
-            productsData[category].forEach(product => {
-                grid.innerHTML += `
-                    <div class="card">
-                        <img src="${product.img}" alt="${product.name}">
-                        <h3>${product.name}</h3>
-                        <p class="price">${product.price}</p>
-                        <button>Add to Cart</button>
-                    </div>
-                `;
-            });
-        }
+        grid.innerHTML += `
+        <div class="card">
+            <div class="discount">${discount}% OFF</div>
+            <img src="${product.img}">
+            <h3>${product.name}</h3>
+            <div class="rating">⭐⭐⭐⭐☆</div>
+            <p class="price">₹${product.price} <span>₹${product.oldPrice}</span></p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        `;
+    });
+}
 
-        // প্রোডাক্ট ভিউ থেকে ক্যাটাগরিতে ফিরে যাওয়ার ফাংশন
-        function showCategories() {
-            document.getElementById('categoryView').style.display = 'block';
-            document.getElementById('productView').style.display = 'none';
-        }
-    </script>
+function showCategories() {
+    document.getElementById('categorySection').style.display = 'block';
+    document.getElementById('productSection').style.display = 'none';
+}
+
+function addToCart() {
+    cart++;
+    document.getElementById("cartCount").innerText = cart;
+}
+
+function scrollToCategory(){
+    document.getElementById("categorySection").scrollIntoView({behavior:"smooth"});
+}
+
+</script>
+
 </body>
 </html>
-
-
-
