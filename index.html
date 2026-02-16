@@ -3,81 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Town Mart - Advanced</title>
+<title>Town Mart</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
-body{background:#f1f3f6;color:#212121;transition:0.3s;}
-.dark{background:#121212;color:#fff;}
-.container{padding:30px 6%;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#f1f3f6;color:#212121}
+body.dark{background:#121212;color:#fff}
+.container{padding:30px 6%}
 
 /* NAVBAR */
 .navbar{
 background:#2874f0;color:#fff;
 display:flex;justify-content:space-between;align-items:center;
-padding:12px 6%;position:sticky;top:0;z-index:1000;
+padding:12px 6%;position:sticky;top:0;z-index:1000
 }
-.logo{font-size:22px;font-weight:bold;}
+.logo{font-size:26px;font-weight:bold;font-style:italic}
 .search-bar input{
-padding:8px 12px;width:300px;border:none;border-radius:4px;
+padding:10px 15px;width:350px;border:none;border-radius:25px
 }
-.nav-links span{margin-left:15px;cursor:pointer;font-weight:500;}
-.badge{background:red;color:#fff;padding:2px 6px;border-radius:50%;font-size:12px;}
+.nav-links span{margin-left:15px;cursor:pointer;font-weight:500}
+.badge{background:red;padding:2px 6px;border-radius:50%;font-size:12px}
 
 /* HERO */
 .hero{
-height:300px;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
-url('images/banner1.png') center/cover;
-display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;
+height:300px;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url("images/banner1.png") center/cover;
+display:flex;align-items:center;justify-content:center;color:#fff
 }
-.hero button{margin-top:15px;padding:10px 20px;border:none;background:#fb641b;color:#fff;cursor:pointer;border-radius:4px;}
+.hero button{
+margin-top:15px;padding:10px 25px;
+border:none;background:#fb641b;color:#fff;border-radius:25px;cursor:pointer
+}
 
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:30px;}
-.card{
-background:#fff;padding:15px;border-radius:8px;position:relative;
-transition:.3s;cursor:pointer;
+/* CATEGORY */
+.category-grid{
+display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:30px
 }
-.dark .card{background:#1e1e1e;}
-.card:hover{transform:translateY(-5px);box-shadow:0 6px 20px rgba(0,0,0,.15);}
-.card img{width:100%;height:150px;object-fit:contain;}
-.discount{position:absolute;top:10px;left:10px;background:#d32f2f;color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;}
-.price{font-weight:bold;margin:5px 0;}
-.old{text-decoration:line-through;color:gray;font-size:13px;margin-left:5px;}
-.rating{color:#ff9f00;font-size:13px;}
-.actions{display:flex;justify-content:space-between;margin-top:8px;}
-button{cursor:pointer}
+.category-card{
+background:#fff;width:160px;text-align:center;
+padding:15px;border-radius:15px;cursor:pointer
+}
+.category-card img{width:80px;height:80px;object-fit:contain}
+.category-card:hover{transform:translateY(-5px)}
+
+/* PRODUCT GRID */
+.grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;margin-top:30px
+}
+.card{
+background:#fff;padding:15px;border-radius:15px;position:relative
+}
+.card img{width:100%;height:150px;object-fit:contain}
+.discount{
+position:absolute;top:10px;left:10px;
+background:#d32f2f;color:#fff;padding:3px 6px;font-size:11px;border-radius:5px
+}
+.price{font-weight:bold;margin:5px 0}
+.old{font-size:13px;color:gray;text-decoration:line-through;margin-left:5px}
+.rating{color:#ff9f00;font-size:13px}
+.card button{
+width:100%;padding:8px;border:none;
+background:#fb641b;color:#fff;border-radius:20px;margin-top:5px;cursor:pointer
+}
 
 /* DRAWER */
 .drawer{
 position:fixed;right:-400px;top:0;width:350px;height:100%;
-background:#fff;box-shadow:-5px 0 20px rgba(0,0,0,.2);
-padding:20px;transition:.3s;overflow:auto;z-index:2000;
+background:#fff;padding:20px;transition:.3s;z-index:2000;overflow:auto
 }
-.dark .drawer{background:#1e1e1e;}
-.drawer.active{right:0;}
-.drawer h3{margin-bottom:10px;}
-.cart-item{display:flex;justify-content:space-between;margin-bottom:10px;font-size:14px;}
-.total{font-weight:bold;margin-top:10px;}
+.drawer.active{right:0}
+.dark .drawer{background:#1e1e1e}
+.cart-item{display:flex;justify-content:space-between;margin:10px 0}
 
 /* MODAL */
 .modal{
 position:fixed;top:0;left:0;width:100%;height:100%;
 background:rgba(0,0,0,.6);display:none;
-align-items:center;justify-content:center;z-index:3000;
+align-items:center;justify-content:center;z-index:3000
 }
 .modal-content{
-background:#fff;padding:25px;border-radius:8px;width:300px;
+background:#fff;padding:25px;border-radius:10px;width:300px
 }
-.dark .modal-content{background:#1e1e1e;}
-.modal input{width:100%;padding:8px;margin:5px 0;}
-.close{float:right;cursor:pointer;font-weight:bold;}
+.dark .modal-content{background:#1e1e1e}
+.modal input{width:100%;padding:8px;margin:5px 0}
+.close{float:right;cursor:pointer}
 
-footer{text-align:center;padding:20px;background:#172337;color:#fff;margin-top:40px;}
+/* FOOTER */
+footer{text-align:center;padding:20px;background:#172337;color:#fff;margin-top:40px}
 
 @media(max-width:768px){
-.search-bar input{width:100%;}
-.navbar{flex-direction:column;gap:10px;}
+.search-bar input{width:100%}
+.navbar{flex-direction:column;gap:10px}
 }
 </style>
 </head>
@@ -87,11 +105,9 @@ footer{text-align:center;padding:20px;background:#172337;color:#fff;margin-top:4
 <!-- NAVBAR -->
 <div class="navbar">
 <div class="logo">TownMart</div>
-
 <div class="search-bar">
 <input type="text" id="search" placeholder="Search products...">
 </div>
-
 <div class="nav-links">
 <span onclick="toggleDark()">🌙</span>
 <span onclick="openLogin()">Login</span>
@@ -108,125 +124,104 @@ footer{text-align:center;padding:20px;background:#172337;color:#fff;margin-top:4
 </div>
 </div>
 
-<!-- PRODUCTS -->
+<!-- CATEGORY -->
 <div class="container">
+<div class="category-grid">
+<div class="category-card" onclick="filterCat('Rice')"><img src="images/rice.png"><h4>Rice</h4></div>
+<div class="category-card" onclick="filterCat('Oil')"><img src="images/oil.png"><h4>Oil</h4></div>
+<div class="category-card" onclick="filterCat('Spices')"><img src="images/spices.png"><h4>Spices</h4></div>
+<div class="category-card" onclick="filterCat('Dairy')"><img src="images/milk.png"><h4>Dairy</h4></div>
+</div>
+
+<!-- PRODUCTS -->
 <div class="grid" id="productGrid"></div>
 </div>
 
-<!-- CART DRAWER -->
+<!-- CART -->
 <div class="drawer" id="cartDrawer">
 <h3>Your Cart</h3>
 <div id="cartItems"></div>
-<div class="total">Total: ₹<span id="totalPrice">0</span></div>
+<p><b>Total: ₹<span id="total">0</span></b></p>
 <button onclick="checkout()">Checkout</button>
 </div>
 
-<!-- LOGIN MODAL -->
+<!-- LOGIN -->
 <div class="modal" id="loginModal">
 <div class="modal-content">
 <span class="close" onclick="closeLogin()">X</span>
 <h3>Login</h3>
 <input placeholder="Email">
 <input placeholder="Password" type="password">
-<button style="width:100%;margin-top:10px;">Login</button>
+<button style="width:100%">Login</button>
 </div>
 </div>
 
 <script>
-
 const products=[
-{name:"Basmati Rice 1kg",price:150,old:200,img:"images/basmati.jfif"},
-{name:"Mustard Oil 1L",price:140,old:180,img:"images/mustard-oil.jfif"},
-{name:"Turmeric Powder",price:30,old:45,img:"images/turmeric.jfif"},
-{name:"Amul Milk 1L",price:60,old:75,img:"images/amul.jfif"}
+{name:"Basmati Rice",cat:"Rice",price:150,old:200,img:"images/basmati.jfif"},
+{name:"Mustard Oil",cat:"Oil",price:140,old:180,img:"images/mustard-oil.jfif"},
+{name:"Turmeric Powder",cat:"Spices",price:30,old:45,img:"images/turmeric.jfif"},
+{name:"Amul Milk",cat:"Dairy",price:60,old:75,img:"images/amul.jfif"}
 ];
 
 let cart=[],wishlist=[];
-
 const grid=document.getElementById("productGrid");
 
-function renderProducts(list){
+function render(list){
 grid.innerHTML="";
 list.forEach((p,i)=>{
-let discount=Math.round((p.old-p.price)/p.old*100);
+let off=Math.round((p.old-p.price)/p.old*100);
 grid.innerHTML+=`
 <div class="card">
-<div class="discount">${discount}% OFF</div>
+<div class="discount">${off}% OFF</div>
 <img src="${p.img}">
 <h4>${p.name}</h4>
 <div class="rating">⭐⭐⭐⭐☆</div>
 <div class="price">₹${p.price}<span class="old">₹${p.old}</span></div>
-<div class="actions">
-<button onclick="addCart(${i})">Add</button>
-<button onclick="addWish(${i})">❤️</button>
-</div>
+<button onclick="addCart(${i})">Add to Cart</button>
+<button onclick="addWish(${i})">❤️ Wishlist</button>
 </div>`;
 });
 }
-
-renderProducts(products);
+render(products);
 
 /* SEARCH */
-document.getElementById("search").addEventListener("input",e=>{
-let val=e.target.value.toLowerCase();
-renderProducts(products.filter(p=>p.name.toLowerCase().includes(val)));
-});
+search.oninput=e=>{
+let v=e.target.value.toLowerCase();
+render(products.filter(p=>p.name.toLowerCase().includes(v)));
+}
+
+/* CATEGORY */
+function filterCat(c){render(products.filter(p=>p.cat==c));}
 
 /* CART */
-function addCart(i){
-cart.push(products[i]);
-updateCart();
-}
+function addCart(i){cart.push(products[i]);updateCart();}
 function updateCart(){
-document.getElementById("cartCount").innerText=cart.length;
-let html="",total=0;
-cart.forEach(p=>{
-html+=`<div class="cart-item">${p.name}<span>₹${p.price}</span></div>`;
-total+=p.price;
-});
-document.getElementById("cartItems").innerHTML=html;
-document.getElementById("totalPrice").innerText=total;
+cartCount.innerText=cart.length;
+let h="",t=0;
+cart.forEach(p=>{h+=`<div class="cart-item">${p.name}<span>₹${p.price}</span></div>`;t+=p.price});
+cartItems.innerHTML=h;total.innerText=t;
 }
-function openCart(){document.getElementById("cartDrawer").classList.toggle("active");}
+function openCart(){cartDrawer.classList.toggle("active");}
 
 /* WISHLIST */
-function addWish(i){
-wishlist.push(products[i]);
-document.getElementById("wishCount").innerText=wishlist.length;
-}
+function addWish(i){wishlist.push(products[i]);wishCount.innerText=wishlist.length;}
+function openWishlist(){alert("Wishlist Items: "+wishlist.length);}
 
 /* LOGIN */
-function openLogin(){document.getElementById("loginModal").style.display="flex";}
-function closeLogin(){document.getElementById("loginModal").style.display="none";}
+function openLogin(){loginModal.style.display="flex";}
+function closeLogin(){loginModal.style.display="none";}
 
 /* CHECKOUT */
-function checkout(){
-alert("Order Placed Successfully 🎉");
-cart=[];
-updateCart();
-openCart();
-}
+function checkout(){alert("Order Placed 🎉");cart=[];updateCart();openCart();}
 
 /* DARK MODE */
-function toggleDark(){
-document.body.classList.toggle("dark");
-}
+function toggleDark(){document.body.classList.toggle("dark");}
 
 /* SCROLL */
-function scrollToProducts(){
-window.scrollTo({top:400,behavior:"smooth"});
-}
-
+function scrollToProducts(){window.scrollTo({top:500,behavior:"smooth"});}
 </script>
 
-<footer>
-git add .
-git commit -m "fix deployment"
-git push
-
-© 2026 Town Mart | Designed by Soumen
-</footer>
-
+<footer>© 2026 Town Mart | Designed by Soumen</footer>
 </body>
 </html>
-
