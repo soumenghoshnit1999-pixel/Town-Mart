@@ -22,26 +22,27 @@
     <div class="hero">
         <div class="slider">
             <div class="slide active" style="background-image: url('images/banner2.png');">
-                    <div class="hero-overlay">
-                        <h1>Big Savings on Grocery</h1>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
-                </div>
-                <div class="slide" style="background-image: url('images/banner1.png');">
-                    <div class="hero-overlay">
-                        <h1>Fresh Dairy Products</h1>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
-                </div>
-                <div class="slide" style="background-image: url('images/banner3.png');">
-                    <div class="hero-overlay">
-                        <h1>Best Prices Guaranteed</h1>
-                        <button class="shop-btn">Shop Now</button>
+                <div class="hero-overlay">
+                    <h1>Big Savings on Grocery</h1>
+                    <button class="shop-btn">Shop Now</button>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('images/banner1.png');">
+                <div class="hero-overlay">
+                    <h1>Fresh Dairy Products</h1>
+                    <button class="shop-btn">Shop Now</button>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('images/banner3.png');">
+                <div class="hero-overlay">
+                    <h1>Best Prices Guaranteed</h1>
+                    <button class="shop-btn">Shop Now</button>
                 </div>
             </div>
         </div>
         <div class="dots">
             <span class="dot active"></span>
+            <span class="dot"></span>
             <span class="dot"></span>
         </div>
     </div>
@@ -86,7 +87,7 @@
     </footer>
 
     <script>
-        // --- Slideshow Script ---
+        // --- স্লাইড শো স্ক্রিপ্ট ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
@@ -103,9 +104,10 @@
             showSlide(currentSlide + 1);
         }
 
-        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        // ৫ সেকেন্ড পরপর স্লাইড পরিবর্তন হবে
+        setInterval(nextSlide, 5000); 
 
-        // --- Category/Product Navigation Script ---
+        // --- ক্যাটাগরি এবং প্রোডাক্ট ডাটা ---
         const productsData = {
             rice: [
                 { name: "Basmati Rice 1kg", price: "₹150", img: "images/basmati.jpg" },
@@ -126,6 +128,7 @@
             ]
         };
 
+        // ক্যাটাগরি থেকে প্রোডাক্ট দেখানোর ফাংশন
         function showProducts(category) {
             document.getElementById('categoryView').style.display = 'none';
             document.getElementById('productView').style.display = 'block';
@@ -147,6 +150,7 @@
             });
         }
 
+        // প্রোডাক্ট ভিউ থেকে ক্যাটাগরিতে ফিরে যাওয়ার ফাংশন
         function showCategories() {
             document.getElementById('categoryView').style.display = 'block';
             document.getElementById('productView').style.display = 'none';
@@ -154,4 +158,3 @@
     </script>
 </body>
 </html>
-
