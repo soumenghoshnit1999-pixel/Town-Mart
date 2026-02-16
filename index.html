@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trust Mart</title>
+    <title>Trust Mart - Categories</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,100 +14,106 @@
             <input type="text" placeholder="Search for products...">
         </div>
         <div class="nav-links">
-            <a href="#">Categories</a>
+            <a href="index.html">Home</a>
             <a href="#">Offers</a>
             <a href="#">Cart 🛒</a>
             <a href="#">Login</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="slider">
-            <div class="slides">
-                <div class="slide active" style="background-image: url('images/banner2.png');">
-                    <div class="hero-overlay">
-                        <h1>Big Savings on Grocery</h1>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
+    <div class="container">
+        
+        <section class="category-view" id="category-view">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="openCategory('rice')">
+                    <img src="images/rice-icon.png" alt="Rice">
+                    <h3>Rice</h3>
                 </div>
-                <div class="slide" style="background-image: url('images/banner1.png');">
-                    <div class="hero-overlay">
-                        <h1>Fresh Dairy Products</h1>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
+                <div class="category-card" onclick="openCategory('oil')">
+                    <img src="images/oil-icon.png" alt="Oil">
+                    <h3>Oil</h3>
                 </div>
-                <div class="slide" style="background-image: url('images/banner3.png');">
-                    <div class="hero-overlay">
-                        <h1>Best Prices Guaranteed</h1>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
+                <div class="category-card" onclick="openCategory('spices')">
+                    <img src="images/spices-icon.png" alt="Spices">
+                    <h3>Spices</h3>
                 </div>
-            </div> <div class="dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <div class="category-card" onclick="openCategory('dairy')">
+                    <img src="images/dairy-icon.png" alt="Dairy">
+                    <h3>Dairy</h3>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="products">
-        <div class="card">
-            <img src="images/amul.jfif" alt="Milk">
-            <h3>Milk</h3>
-            <p class="price">₹28</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="card">
-            <img src="images/oil.jfif" alt="Oil">
-            <h3>Oil</h3>
-            <p class="price">₹120</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="card">
-            <img src="images/biscuit.jpg" alt="biscuit">
-            <h3>Biscuits</h3>
-            <p class="price">₹10</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="card">
-            <img src="images/detergent.jfif" alt="Detergent">
-            <h3>Detergent Powder</h3>
-            <p class="price">₹55</p>
-            <button>Add to Cart</button>
-        </div>
-    </section>
+        <section class="product-view" id="product-view" style="display:none;">
+            <div class="product-header">
+                <button class="back-btn" onclick="backToCategories()">← Back</button>
+                <h2 id="category-title">Category Name</h2>
+            </div>
+            <div class="product-grid" id="product-list">
+                </div>
+        </section>
+
+    </div>
 
     <footer>
-        © 2024 Trust Mart | All Rights Reserved
+        <p>&copy; 2024 Trust Mart | All Rights Reserved</p>
     </footer>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
+        // Database of products
+        const productsData = {
+            rice: [
+                { name: "Basmati Rice 1kg", price: "₹150", img: "images/basmati.jpg" },
+                { name: "Miniket Rice 5kg", price: "₹300", img: "images/miniket.jpg" },
+                { name: "Brown Rice 1kg", price: "₹120", img: "images/brown-rice.jpg" }
+            ],
+            oil: [
+                { name: "Fortune Soyabean 1L", price: "₹120", img: "images/oil.jfif" },
+                { name: "Mustard Oil 1L", price: "₹140", img: "images/mustard-oil.jpg" }
+            ],
+            spices: [
+                { name: "Turmeric Powder 100g", price: "₹30", img: "images/turmeric.jpg" },
+                { name: "Chilli Powder 100g", price: "₹35", img: "images/chilli.jpg" }
+            ],
+            dairy: [
+                { name: "Amul Milk 1L", price: "₹60", img: "images/amul.jfif" },
+                { name: "Amul Butter 100g", price: "₹55", img: "images/butter.jpg" }
+            ]
+        };
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+        // Function to open specific category
+        function openCategory(category) {
+            // Hide category view
+            document.getElementById('category-view').style.display = 'none';
+            // Show product view
+            document.getElementById('product-view').style.display = 'block';
             
-            currentSlide = index;
-            if (currentSlide >= slides.length) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = slides.length - 1;
-
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
+            // Set title
+            document.getElementById('category-title').innerText = category.toUpperCase();
+            
+            // Clear product list
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            
+            // Populate products
+            productsData[category].forEach(product => {
+                productList.innerHTML += `
+                    <div class="card">
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price}</p>
+                        <button>Add to Cart</button>
+                    </div>
+                `;
+            });
         }
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
+        // Function to go back to categories
+        function backToCategories() {
+            document.getElementById('product-view').style.display = 'none';
+            document.getElementById('category-view').style.display = 'block';
         }
-
-        setInterval(nextSlide, 4000); // Auto change
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showSlide(index));
-        });
     </script>
 </body>
 </html>
-
