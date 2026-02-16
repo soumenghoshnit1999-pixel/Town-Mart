@@ -1,94 +1,162 @@
-<script>
-    // =========================
-    // 🔥 SLIDER SCRIPT UPDATED
-    // =========================
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    let slideInterval;
+HTML: <!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Grocery Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    function showSlide(n) {
-        slides[currentSlide].classList.remove('active');
-        dots[currentSlide].classList.remove('active');
+    <div class="navbar">
+        <div class="logo">GroceryStore</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="nav-links">
+            <a href="#">Login</a>
+            <a href="#">Cart</a>
+        </div>
+    </div>
 
-        currentSlide = (n + slides.length) % slides.length;
-
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
-    }
-
-    function nextSlide() {
-        showSlide(currentSlide + 1);
-    }
-
-    function startSlider() {
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function stopSlider() {
-        clearInterval(slideInterval);
-    }
-
-    // Dot click support
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            showSlide(index);
-        });
-    });
-
-    // Hover করলে pause হবে
-    document.querySelector('.slider').addEventListener('mouseenter', stopSlider);
-    document.querySelector('.slider').addEventListener('mouseleave', startSlider);
-
-    startSlider();
-
-
-    // =========================
-    // 🛒 PRODUCT SYSTEM
-    // =========================
-    const productsData = {
-        rice: [
-            { name: "Basmati Rice 1kg", price: "₹150", img: "images/basmati.jfif" },
-            { name: "Miniket Rice 5kg", price: "₹300", img: "images/miniket.jfif" },
-            { name: "Brown Rice 1kg", price: "₹120", img: "images/brown-rice.jfif" }
-        ],
-        oil: [
-            { name: "Fortune Soyabean 1L", price: "₹120", img: "images/oil.jpg" },
-            { name: "Mustard Oil 1L", price: "₹140", img: "images/mustard-oil.jfif" }
-        ],
-        spices: [
-            { name: "Turmeric Powder 100g", price: "₹30", img: "images/turmeric.jfif" },
-            { name: "Chilli Powder 100g", price: "₹35", img: "images/chilli.jfif" }
-        ],
-        dairy: [
-            { name: "Amul Milk 1L", price: "₹60", img: "images/amul.jfif" },
-            { name: "Amul Butter 100g", price: "₹50", img: "images/butter.jfif" }
-        ]
-    };
-
-    function showProducts(category) {
-        document.getElementById('categoryView').style.display = 'none';
-        document.getElementById('productView').style.display = 'block';
-        document.getElementById('categoryTitle').innerText =
-            category.charAt(0).toUpperCase() + category.slice(1);
-
-        const grid = document.getElementById('productGrid');
-        grid.innerHTML = '';
-
-        productsData[category].forEach(product => {
-            grid.innerHTML += `
-                <div class="card">
-                    <img src="${product.img}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="price">${product.price}</p>
-                    <button>Add to Cart</button>
+    <div class="hero">
+        <div class="slider">
+            <div class="slide active" style="background-image: url('images/banner2.png');">
+                <div class="hero-overlay">
+                    <h1>Big Savings on Grocery</h1>
+                    <button class="shop-btn">Shop Now</button>
                 </div>
-            `;
-        });
-    }
+            </div>
+            <div class="slide" style="background-image: url('images/banner1.png');">
+                <div class="hero-overlay">
+                    <h1>Fresh Dairy Products</h1>
+                    <button class="shop-btn">Shop Now</button>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('images/banner3.png');">
+                <div class="hero-overlay">
+                    <h1>Best Prices Guaranteed</h1>
+                    <button class="shop-btn">Shop Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
 
-    function showCategories() {
-        document.getElementById('categoryView').style.display = 'block';
-        document.getElementById('productView').style.display = 'none';
-    }
-</script>
+    <div class="container">
+        
+        <div id="categoryView">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showProducts('rice')">
+                    <img src="images/india-gate.png" alt="Rice">
+                    <h3>Rice</h3>
+                </div>
+                <div class="category-card" onclick="showProducts('oil')">
+                    <img src="images/fortune-pouch.png" alt="Oil">
+                    <h3>Oil</h3>
+                </div>
+                <div class="category-card" onclick="showProducts('spices')">
+                    <img src="images/spices.png" alt="Spices">
+                    <h3>Spices</h3>
+                </div>
+                <div class="category-card" onclick="showProducts('dairy')">
+                    <img src="images/amul-milk.png" alt="Dairy">
+                    <h3>Dairy</h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="productView" style="display:none;">
+            <div class="product-header">
+                <button class="back-btn" onclick="showCategories()">Back</button>
+                <h2 id="categoryTitle">Products</h2>
+            </div>
+            <div class="product-grid" id="productGrid">
+                </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Indian Grocery Store</p>
+    </footer>
+
+    <script>
+        // --- স্লাইড শো স্ক্রিপ্ট ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // ৫ সেকেন্ড পরপর স্লাইড পরিবর্তন হবে
+        setInterval(nextSlide, 5000); 
+
+        // --- ক্যাটাগরি এবং প্রোডাক্ট ডাটা ---
+        const productsData = {
+            rice: [
+                { name: "Basmati Rice 1kg", price: "₹150", img: "images/basmati.jfif" },
+                { name: "Miniket Rice 5kg", price: "₹300", img: "images/miniket.jfif" },
+                { name: "Brown Rice 1kg", price: "₹120", img: "images/brown-rice.jfif" }
+            ],
+            oil: [
+                { name: "Fortune Soyabean 1L", price: "₹120", img: "images/oil.jpg" },
+                { name: "Mustard Oil 1L", price: "₹140", img: "images/mustard-oil.jfif" }
+            ],
+            spices: [
+                { name: "Turmeric Powder 100g", price: "₹30", img: "images/turmeric.jfif" },
+                { name: "Chilli Powder 100g", price: "₹35", img: "images/chilli.jfif" }
+            ],
+            dairy: [
+                { name: "Amul Milk 1L", price: "₹60", img: "images/amul.jfif" },
+                { name: "Amul Butter 100g", price: "₹50", img: "images/butter.jfif" }
+            ]
+        };
+
+        // ক্যাটাগরি থেকে প্রোডাক্ট দেখানোর ফাংশন
+        function showProducts(category) {
+            document.getElementById('categoryView').style.display = 'none';
+            document.getElementById('productView').style.display = 'block';
+            document.getElementById('categoryTitle').innerText = category.charAt(0).toUpperCase() + category.slice(1);
+            
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            grid.style.display = 'flex';
+            
+            productsData[category].forEach(product => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price}</p>
+                        <button>Add to Cart</button>
+                    </div>
+                `;
+            });
+        }
+
+        // প্রোডাক্ট ভিউ থেকে ক্যাটাগরিতে ফিরে যাওয়ার ফাংশন
+        function showCategories() {
+            document.getElementById('categoryView').style.display = 'block';
+            document.getElementById('productView').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
+
